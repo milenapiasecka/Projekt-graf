@@ -26,8 +26,10 @@ Element* dodaj_element(Element *glowa, const char *name, int u, int v, double we
 
 Element * czytaj_plik(int argc, char *argv[]){
 
-    if(argc < 2)
+    if(argc < 2) {
+        printf("Nie podano nazwy pliku");
         return NULL;
+    }
 
     FILE *f = fopen(argv[1], "r");
 
@@ -40,7 +42,12 @@ Element * czytaj_plik(int argc, char *argv[]){
     char name[32];
     double weight;
 
-    while(fscanf(f,"%s %d %d %lf", name, &u, &v, &weight ) == 4) {
+    while(fscanf(f,"%31s %d %d %lf", name, &u, &v, &weight ) == 4) {
+        if (u < 0 || v < 0 || weight <= 0) {
+            printf("Wprowadzone wartosci sa bledne\n");
+            break;
+        }
+
         glowa = dodaj_element(glowa, name, u,v,weight);
     }
     

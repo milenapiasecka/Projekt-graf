@@ -3,9 +3,7 @@
 #include <math.h>
 #include "output.h"
 
-// ----------------------------------
-// FAKE layout – rozmieszczenie na okręgu
-// ----------------------------------
+// fake layout – rozmieszczenie na okręgu
 void generate_fake_layout(Graph* g) {
     if (g == NULL || g->n_vertices == 0)
         return;
@@ -20,16 +18,14 @@ void generate_fake_layout(Graph* g) {
     }
 }
 
-// ----------------------------------
-// Zapis tekstowy
-// ----------------------------------
+// zapis tekstowy
 int save_output_text(const char* filename, Graph* g) {
     if (g == NULL)
         return 0;
 
     FILE* f = fopen(filename, "w");
     if (f == NULL) {
-        printf("Error: cannot open file %s\n", filename);
+        printf("Nie mozna otworzyc pliku %s\n", filename);
         return 0;
     }
 
@@ -44,9 +40,7 @@ int save_output_text(const char* filename, Graph* g) {
     return 1;
 }
 
-// ----------------------------------
-// Zapis binarny
-// ----------------------------------
+// zapis binarny
 int save_output_binary(const char* filename, Graph* g) {
     if (g == NULL)
         return 0;

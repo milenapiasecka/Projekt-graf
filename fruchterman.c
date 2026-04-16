@@ -19,20 +19,16 @@ void fruchterman_reingold(Graph *g, int iterations) {
     // optymalna odległość między wierzchołkami
     double k = sqrt(AREA / n);
 
-    // --------------------------
-    // 1. LOSOWA INICJALIZACJA
-    // --------------------------
+    // losowa inicjalizacja
     for (int i = 0; i < n; i++) {
         g->vertices[i].x = rand01() * 100.0;
         g->vertices[i].y = rand01() * 100.0;
     }
 
-    // --------------------------
-    // 2. ITERACJE
-    // --------------------------
+    
+    // iteracje
     for (int iter = 0; iter < iterations; iter++) {
 
-        // zamiast VLA → malloc
         double *dx = malloc(n * sizeof(double));
         double *dy = malloc(n * sizeof(double));
 
@@ -48,9 +44,7 @@ void fruchterman_reingold(Graph *g, int iterations) {
             dy[i] = 0.0;
         }
 
-        // --------------------------
-        // SIŁY ODPYCHAJĄCE
-        // --------------------------
+        //siły odpychajace 
         for (int v = 0; v < n; v++) {
             for (int u = v + 1; u < n; u++) {
 
@@ -69,9 +63,7 @@ void fruchterman_reingold(Graph *g, int iterations) {
             }
         }
 
-        // --------------------------
-        // SIŁY PRZYCIĄGAJĄCE (KRAWĘDZIE)
-        // --------------------------
+        // sily przyciagajace - krawedzie
         for (int e = 0; e < g->n_edges; e++) {
 
             int u_id = g->edges[e].u;
@@ -105,9 +97,7 @@ void fruchterman_reingold(Graph *g, int iterations) {
             dy[u] += (dyv / dist) * force;
         }
 
-        // --------------------------
-        // AKTUALIZACJA POZYCJI
-        // --------------------------
+        // aktualizacja pozycji
         for (int i = 0; i < n; i++) {
             g->vertices[i].x += dx[i] * 0.01;
             g->vertices[i].y += dy[i] * 0.01;

@@ -16,8 +16,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    
     // 2. konwersja
     Graph* g = list_to_graph(lista);
+    if(g==NULL) {
+        return 1;
+    }
 
     // 3. algorytm
     fruchterman_reingold(g, 500);
