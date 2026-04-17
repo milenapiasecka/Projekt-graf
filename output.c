@@ -3,21 +3,6 @@
 #include <math.h>
 #include "output.h"
 
-// fake layout – rozmieszczenie na okręgu
-void generate_fake_layout(Graph* g) {
-    if (g == NULL || g->n_vertices == 0)
-        return;
-
-    double radius = 10.0;
-
-    for (int i = 0; i < g->n_vertices; i++) {
-        double angle = 2.0 * M_PI * i / g->n_vertices;
-
-        g->vertices[i].x = radius * cos(angle);
-        g->vertices[i].y = radius * sin(angle);
-    }
-}
-
 // zapis tekstowy
 int save_output_text(const char* filename, Graph* g) {
     if (g == NULL)
