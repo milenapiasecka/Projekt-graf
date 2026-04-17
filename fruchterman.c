@@ -24,7 +24,6 @@ void fruchterman_reingold(Graph *g, int iterations) {
         g->vertices[i].x = rand01() * 100.0;
         g->vertices[i].y = rand01() * 100.0;
     }
-
     
     // iteracje
     for (int iter = 0; iter < iterations; iter++) {
@@ -32,7 +31,7 @@ void fruchterman_reingold(Graph *g, int iterations) {
         double *dx = malloc(n * sizeof(double));
         double *dy = malloc(n * sizeof(double));
 
-        if (!dx || !dy) {
+        if (dx == NULL || dy == NULL) {
             free(dx);
             free(dy);
             return;
