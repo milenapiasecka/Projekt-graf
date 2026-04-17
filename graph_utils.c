@@ -3,7 +3,12 @@
 #include "pars.h"
 
 Graph* list_to_graph(Element* list) {
+    if (list == NULL)
+        return NULL;
+
     Graph* g = malloc(sizeof(Graph));
+    if (g == NULL) 
+        return NULL;
 
     g->n_edges = 0;
     g->n_vertices = 0;
@@ -16,6 +21,10 @@ Graph* list_to_graph(Element* list) {
     }
 
     g->edges = malloc(g->n_edges * sizeof(Edge));
+    if (!g->edges) {
+        free(g);
+        return NULL;
+    }
 
     // kopiuj krawędzie
     temp = list;
@@ -28,6 +37,11 @@ Graph* list_to_graph(Element* list) {
     // znajdź wierzchołki
     int max = g->n_edges * 2;
     g->vertices = malloc(max * sizeof(Vertex));
+    if (!g->vertices) {
+        free(g->edges);
+        free(g);
+        return NULL;
+    }
 
     for (int i = 0; i < g->n_edges; i++) {
         int u = g->edges[i].u;
@@ -42,14 +56,18 @@ Graph* list_to_graph(Element* list) {
 
         if (!found_u) {
             g->vertices[g->n_vertices].id = u;
+            g->vertices[g->n_vertices].x = 0.0;
+            g->vertices[g->n_vertices].y = 0.0;
             g->n_vertices++;
         }
 
         if (!found_v) {
             g->vertices[g->n_vertices].id = v;
+            g->vertices[g->n_vertices].x = 0.0;
+            g->vertices[g->n_vertices].y = 0.0;
             g->n_vertices++;
         }
-    }
+     }
 
     return g;
 }
