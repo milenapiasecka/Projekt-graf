@@ -3,9 +3,6 @@
 
 #include "graph.h"
 
-// Generuje przykładowe (fake) współrzędne wierzchołków
-void generate_fake_layout(Graph* g);
-
 // Zapis do pliku tekstowego
 int save_output_text(const char* filename, Graph* g);
 
