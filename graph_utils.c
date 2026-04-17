@@ -15,13 +15,13 @@ Graph* list_to_graph(Element* list) {
 
     // policz krawędzie
     Element* temp = list;
-    while (temp) {
+    while (temp != NULL) {
         g->n_edges++;
         temp = temp->next;
     }
 
     g->edges = malloc(g->n_edges * sizeof(Edge));
-    if (!g->edges) {
+    if (g->edges == NULL) {
         free(g);
         return NULL;
     }
@@ -29,7 +29,7 @@ Graph* list_to_graph(Element* list) {
     // kopiuj krawędzie
     temp = list;
     int i = 0;
-    while (temp) {
+    while (temp != NULL) {
         g->edges[i++] = temp->dane;
         temp = temp->next;
     }
@@ -37,7 +37,7 @@ Graph* list_to_graph(Element* list) {
     // znajdź wierzchołki
     int max = g->n_edges * 2;
     g->vertices = malloc(max * sizeof(Vertex));
-    if (!g->vertices) {
+    if (g->vertices == NULL) {
         free(g->edges);
         free(g);
         return NULL;
@@ -50,18 +50,20 @@ Graph* list_to_graph(Element* list) {
         int found_u = 0, found_v = 0;
 
         for (int j = 0; j < g->n_vertices; j++) {
-            if (g->vertices[j].id == u) found_u = 1;
-            if (g->vertices[j].id == v) found_v = 1;
+            if (g->vertices[j].id == u) 
+                found_u = 1;
+            if (g->vertices[j].id == v) 
+                found_v = 1;
         }
 
-        if (!found_u) {
+        if (found_u == 0) {
             g->vertices[g->n_vertices].id = u;
             g->vertices[g->n_vertices].x = 0.0;
             g->vertices[g->n_vertices].y = 0.0;
             g->n_vertices++;
         }
 
-        if (!found_v) {
+        if (found_v == 0) {
             g->vertices[g->n_vertices].id = v;
             g->vertices[g->n_vertices].x = 0.0;
             g->vertices[g->n_vertices].y = 0.0;
