@@ -27,8 +27,21 @@ int main(int argc, char* argv[]) {
     fruchterman_reingold(g, 500);
 
     // 4. zapis
-    save_output_text("out.txt", g);
-    save_output_binary("out.bin", g);
+   if(argc < 3) {
+        printf("Prosze podac w jakim formacie maja byc zapisane pliki");
+    }
+
+    if(strcmp(argv[2], "-b") == 0) 
+    {
+        save_output_binary("out.bin", g);
+    }
+    else if(strcmp(argv[2], "-t") == 0)
+    {
+        save_output_text("out.txt", g);
+    }
+    else {
+        printf("Bledny parametr\n");
+    }
 
     return 0;
 }

@@ -20,8 +20,5 @@ output.o: output.c output.h
 pars.o: pars.c pars.h
 	$(CC) $(CFLAGS) -c pars.c
 
-run: graf
-	./graf graf.txt
-
 clean:
 	rm -f *.o graf out.txt out.bin
