@@ -27,7 +27,7 @@ Element* dodaj_element(Element *glowa, const char *name, int u, int v, double we
 Element * czytaj_plik(int argc, char *argv[]){
 
     if(argc < 2) {
-        printf("Nie podano nazwy pliku");
+        printf("Nie podano nazwy pliku\n");
         return NULL;
     }
 
