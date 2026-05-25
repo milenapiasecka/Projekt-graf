@@ -45,10 +45,7 @@ public class Main {
 
                     } catch (Exception ex) {
 
-                        JOptionPane.showMessageDialog(
-                                frame,
-                                "Blad wczytywania grafu"
-                        );
+                        JOptionPane.showMessageDialog(frame, "Blad wczytywania grafu");
                     }
                 }
             });
