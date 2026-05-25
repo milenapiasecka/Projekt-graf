@@ -41,11 +41,12 @@ int main(int argc, char* argv[]) {
 
 
     if (is_planar_euler(g)) {
-    fruchterman_reingold(g, 500);
+        fruchterman_reingold(g, 500);
     }
     
     else {
     printf("Graf nie jest planarny\n");
+    return 1;
     }
 
    
